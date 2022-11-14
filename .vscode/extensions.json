@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "DavidAnson.vscode-markdownlint",
+    "EditorConfig.EditorConfig",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-python.debugpy",
+    "ms-python.vscode-pylance",
+    "njpwerner.autodocstring",
+    "redhat.vscode-yaml"
+  ]
+}

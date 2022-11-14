@@ -1,0 +1,121 @@
+[project]
+name = "cloudtree"
+authors = [{ name = "Marc", email = "mail@mail.com" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dynamic = ["version"]
+dependencies = [
+  "fsspec>=2023.10.0",
+  "typer",
+  "universal-pathlib",
+  "pathspec",
+  "termcolor>=2.4.0",
+]
+description = "Like unix tree command but with remote-storage support by using fsspec"
+classifiers = [
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development",
+  "Typing :: Typed",
+  "Development Status :: 4 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://github.com/marcm-ml/cloudtree"
+Documentation = "https://github.com/marcm-ml/cloudtree/README.md"
+Repository = "https://github.com/marcm-ml/cloudtree"
+Issues = "https://github.com/marcm-ml/cloudtree/issues"
+Changelog = "https://github.com/marcm-ml/cloudtree/CHANGELOG.md"
+
+# dependencies
+[project.optional-dependencies]
+abfs = ["fsspec[abfs]"]
+adl = ["fsspec[adl]"]
+dropbox = ["fsspec[dropbox]"]
+gcs = ["fsspec[gcs]"]
+git = ["fsspec[git]"]
+github = ["fsspec[github]"]
+gs = ["fsspec[gs]"]
+hdfs = ["fsspec[hdfs]"]
+fuse = ["fsspec[fuse]"]
+arrow = ["fsspec[arrow]"]
+http = ["fsspec[http]"]
+sftp = ["fsspec[sftp]"]
+s3 = ["fsspec[s3]"]
+smb = ["fsspec[smb]"]
+ssh = ["fsspec[ssh]"]
+full = ["fsspec[full]"]
+
+[tool.uv]
+index-url = "https://pypi.python.org/simple"
+dev-dependencies = ["pytest", "ruff"]
+
+# linting
+[tool.ruff]
+line-length = 120
+fixable = ["ALL"]
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "N", "D", "UP", "PT", "PTH"]
+ignore = [
+  "E203",
+  "D100",
+  "D104",
+  "D105",
+  "D200",
+  "D202",
+  "D205",
+  "D212",
+  "D403",
+  "D415",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+
+# testing
+[tool.coverage.run]
+parallel = true
+source = ["src"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "@overload",
+  'if __name__ == "__main__":',
+  "if TYPE_CHECKING:",
+]
+
+# building
+[project.scripts]
+cloudtree = "cloudtree.main:main"
+
+[tool.pdm]
+version = { source = "file", path = "src/cloudtree/__init__.py" }
+distribution = true
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

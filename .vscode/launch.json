@@ -1,0 +1,12 @@
+{
+  "configurations": [
+
+    {
+      "args": "${command:pickArgs}",
+      "module": "cloudtree",
+      "name": "Cloudtree CLI",
+      "request": "launch",
+      "type": "debugpy"
+    }
+  ]
+}
